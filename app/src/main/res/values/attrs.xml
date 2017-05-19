@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SmilingFaceView">
+        <attr name="smiling_color" format="color" />
+        <attr name="smiling_alpha" format="integer"/>
+        <attr name="smiling_width" format="integer"/>
+        <attr name="smiling_duration" format="integer" />
+    </declare-styleable>
+</resources>
