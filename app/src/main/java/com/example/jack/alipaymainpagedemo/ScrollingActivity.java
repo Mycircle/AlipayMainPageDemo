@@ -19,6 +19,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 public class ScrollingActivity extends AppCompatActivity implements OnRefreshListener {
 
     protected CoordinatorLayout mCoordinateMain;
+//    protected MyCustomCoordinatorLayout mCoordinateMain;
     protected SwipeToLoadLayout mSwipeToLoadLayout;
     private AppBarLayout mAppBarLayout = null;
     private CollapsingToolbarLayout collapsingToolbarLayout;
@@ -123,6 +124,7 @@ public class ScrollingActivity extends AppCompatActivity implements OnRefreshLis
         mJiahao = (ImageView) findViewById(R.id.jiahao);
         mTongxunlu = (ImageView) findViewById(R.id.tongxunlu);
         mCoordinateMain = (CoordinatorLayout) findViewById(R.id.coordinate_main);
+//        mCoordinateMain = (MyCustomCoordinatorLayout) findViewById(R.id.coordinate_main);
         mSwipeToLoadLayout = (SwipeToLoadLayout) findViewById(R.id.swipeToLoadLayout);
         mSwipeToLoadLayout.setRefreshEnabled(false);
         mSwipeToLoadLayout.setOnRefreshListener(this);

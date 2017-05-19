@@ -12,7 +12,7 @@ import android.view.MotionEvent;
 
 public class MyCustomCoordinatorLayout extends CoordinatorLayout {
 
-    float OldY;
+
     private static final String TAG = "MyCustomCoordinatorLayo";
     public MyCustomCoordinatorLayout(Context context) {
         super(context);
@@ -27,28 +27,25 @@ public class MyCustomCoordinatorLayout extends CoordinatorLayout {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_MOVE){     //下滑不拦截
-            return false;
-        }
-        return super.onInterceptTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        float OldY = 0;
+        float OldAbsY = 0;
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
-                OldY = ev.getY();
-                return true;
+                 OldY = ev.getY();
+                 OldAbsY = ev.getRawY();
+                Log.d(TAG, "dispatchTouchEvent: y = "+OldY+"  absY = "+OldAbsY);
+                return super.dispatchTouchEvent(ev);
             case MotionEvent.ACTION_MOVE:
-                float y = ev.getY();
-                float distance = y - OldY;
-                Log.d(TAG, "onTouchEvent: distance = "+distance);
-//                if (distance > 200){
-//                    Toast.makeText(getContext(), "下面该刷新了", Toast.LENGTH_SHORT).show();
-//                }
-                return true;
+                float nowY = ev.getY();
+                float nowAbsY = ev.getRawY();
+                float distance = nowY - OldY;
+                float AbsDistance = nowAbsY -OldAbsY;
+                Log.d(TAG, "dispatchTouchEvent: distance = "+distance+ "AbsDistance = "+AbsDistance);
+                return super.dispatchTouchEvent(ev);
+
         }
-        return super.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
+
 }
