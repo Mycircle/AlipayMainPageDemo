@@ -18,6 +18,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 
 public class ScrollingActivity extends AppCompatActivity implements OnRefreshListener {
 
+
     protected CoordinatorLayout mCoordinateMain;
 //    protected MyCustomCoordinatorLayout mCoordinateMain;
     protected SwipeToLoadLayout mSwipeToLoadLayout;
