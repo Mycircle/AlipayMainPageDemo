@@ -10,6 +10,7 @@ import com.aspsine.swipetoloadlayout.SwipeTrigger;
 
 /**
  * Created by Administrator on 2017/5/18.
+ * 1
  */
 
 public class CustomRefreshHeadView extends TextView implements SwipeRefreshTrigger, SwipeTrigger {
