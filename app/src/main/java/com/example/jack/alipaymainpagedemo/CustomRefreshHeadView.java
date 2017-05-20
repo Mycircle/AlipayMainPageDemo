@@ -9,6 +9,7 @@ import com.aspsine.swipetoloadlayout.SwipeTrigger;
 
 /**
  * Created by Administrator on 2017/5/18ad.
+ * 申中佳
  */
 
 public class CustomRefreshHeadView extends android.support.v7.widget.AppCompatTextView implements SwipeRefreshTrigger, SwipeTrigger {
