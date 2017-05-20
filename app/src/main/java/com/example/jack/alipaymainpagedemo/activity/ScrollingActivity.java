@@ -1,22 +1,34 @@
 package com.example.jack.alipaymainpagedemo.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.example.jack.alipaymainpagedemo.R;
+import com.example.jack.alipaymainpagedemo.adapter.RecyclerAdapter;
 import com.example.jack.alipaymainpagedemo.adapter.ToolbarAdapter;
+import com.example.jack.alipaymainpagedemo.common.DividerGridItemDecoration;
+import com.example.jack.alipaymainpagedemo.entity.Item;
+import com.example.jack.alipaymainpagedemo.helper.OnRecyclerItemClickListener;
+import com.example.jack.alipaymainpagedemo.utils.ACache;
+import com.example.jack.alipaymainpagedemo.utils.VibratorUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 测试是否可以上传
@@ -45,7 +57,8 @@ public class ScrollingActivity extends AppCompatActivity implements OnRefreshLis
     private RecyclerView myRecyclerView;
 
     private static final String TAG = "ScrollingActivity";
-
+    private List<Item> results = new ArrayList<Item>();
+    RecyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +68,38 @@ public class ScrollingActivity extends AppCompatActivity implements OnRefreshLis
         myRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setStatusBarScrimColor(getResources().getColor(R.color.color1984D1));
+        ArrayList<Item> items = (ArrayList<Item>) ACache.get(this).getAsObject("items");
+        if (items != null)
+            results.addAll(items);
+        results.add(new Item(results.size(), "更多", R.drawable.takeout_ic_more));
+        adapter = new RecyclerAdapter(R.layout.item_grid, results);
 
-        myRecyclerView.setAdapter(new ToolbarAdapter(this));
+        myRecyclerView.setAdapter(adapter);
+        myRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        myRecyclerView.addItemDecoration(new DividerGridItemDecoration(this));
+
+//        itemTouchHelper = new ItemTouchHelper(new MyItemTouchCallback(adapter).setOnDragListener(this));
+//        itemTouchHelper.attachToRecyclerView(recylerview);
+
+        myRecyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(myRecyclerView) {
+            @Override
+            public void onLongClick(RecyclerView.ViewHolder vh) {
+                if (vh.getLayoutPosition() != results.size() - 1) {
+//                    itemTouchHelper.startDrag(vh);
+                    VibratorUtil.Vibrate(ScrollingActivity.this, 70);   //震动70ms
+                }
+            }
+
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder vh) {
+                Item item = results.get(vh.getLayoutPosition());
+                if(item.getName().equals("更多")){
+                    startActivity(new Intent(ScrollingActivity.this,NextActivity.class));
+                }else
+                    Toast.makeText(ScrollingActivity.this, item.getId() + " " + item.getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+//        myRecyclerView.setAdapter(new ToolbarAdapter(this));
 
         mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
         mToolbar1 = (View) findViewById(R.id.toolbar1);
@@ -146,5 +189,14 @@ public class ScrollingActivity extends AppCompatActivity implements OnRefreshLis
                 mSwipeToLoadLayout.setRefreshing(false);
             }
         }, 2000);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        results.clear();
+        ArrayList<Item> items = (ArrayList<Item>) ACache.get(this).getAsObject("items");
+        if (items != null)
+            results.addAll(items);
+        results.add(new Item(results.size(), "更多", R.drawable.takeout_ic_more));adapter.addList(results);
     }
 }
