@@ -1,4 +1,4 @@
-package com.example.jack.alipaymainpagedemo;
+package com.example.jack.alipaymainpagedemo.utils;
 
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.RecyclerView;

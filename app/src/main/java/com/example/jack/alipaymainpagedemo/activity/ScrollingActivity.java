@@ -1,4 +1,4 @@
-package com.example.jack.alipaymainpagedemo;
+package com.example.jack.alipaymainpagedemo.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.example.jack.alipaymainpagedemo.R;
+import com.example.jack.alipaymainpagedemo.adapter.ToolbarAdapter;
 
 public class ScrollingActivity extends AppCompatActivity implements OnRefreshListener {
 

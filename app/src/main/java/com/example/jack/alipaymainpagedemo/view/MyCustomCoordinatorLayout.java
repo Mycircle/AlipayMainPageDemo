@@ -1,4 +1,4 @@
-package com.example.jack.alipaymainpagedemo;
+package com.example.jack.alipaymainpagedemo.view;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

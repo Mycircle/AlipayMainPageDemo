@@ -1,4 +1,4 @@
-package com.example.jack.alipaymainpagedemo;
+package com.example.jack.alipaymainpagedemo.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -19,6 +19,7 @@ import android.view.View;
 
 import com.aspsine.swipetoloadlayout.SwipeRefreshTrigger;
 import com.aspsine.swipetoloadlayout.SwipeTrigger;
+import com.example.jack.alipaymainpagedemo.R;
 
 /**
  * Created by Administrator on 2017/5/19.
