@@ -20,7 +20,7 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/img_shaomiao"
         android:layout_marginLeft="20dp"
-        android:src="@drawable/fukuang"/>
+        android:src="@drawable/fukuang1"/>
 
     <ImageView
         android:id="@+id/img_search"
