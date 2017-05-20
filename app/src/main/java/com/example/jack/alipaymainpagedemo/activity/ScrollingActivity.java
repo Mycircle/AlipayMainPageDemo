@@ -18,6 +18,9 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.example.jack.alipaymainpagedemo.R;
 import com.example.jack.alipaymainpagedemo.adapter.ToolbarAdapter;
 
+/**
+ * 测试是否可以上传
+ */
 public class ScrollingActivity extends AppCompatActivity implements OnRefreshListener {
 
 
