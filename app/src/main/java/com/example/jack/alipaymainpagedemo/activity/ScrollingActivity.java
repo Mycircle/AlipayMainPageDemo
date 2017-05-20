@@ -95,8 +95,10 @@ public class ScrollingActivity extends AppCompatActivity implements OnRefreshLis
                         //收缩toolbar
                         mToolbar1.setVisibility(View.GONE);
                         mToolbar2.setVisibility(View.VISIBLE);
-                        setToolbar2Alpha(Math.abs(verticalOffset));
-                    } else {
+                        float distance = (Math.abs(alpha) *(255/(float)(appBarLayout.getTotalScrollRange()-255)));
+                        int Ds = (int)distance;     //使渐变效果更平缓，避免透明度突然增大引起闪屏
+                        setToolbar2Alpha(Ds);
+                    } else {                //当滑动距离小于255时(可以说下拉也可以是上滑）toobar1执行透明度渐变，
                         //张开toolbar
                         mToolbar1.setVisibility(View.VISIBLE);
                         mToolbar2.setVisibility(View.GONE);
