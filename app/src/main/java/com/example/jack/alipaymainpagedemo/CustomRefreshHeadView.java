@@ -3,17 +3,15 @@ package com.example.jack.alipaymainpagedemo;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 import com.aspsine.swipetoloadlayout.SwipeRefreshTrigger;
 import com.aspsine.swipetoloadlayout.SwipeTrigger;
 
 /**
- * Created by Administrator on 2017/5/18.
- * 是sda
+ * Created by Administrator on 2017/5/18ad.
  */
 
-public class CustomRefreshHeadView extends TextView implements SwipeRefreshTrigger, SwipeTrigger {
+public class CustomRefreshHeadView extends android.support.v7.widget.AppCompatTextView implements SwipeRefreshTrigger, SwipeTrigger {
     public CustomRefreshHeadView(Context context) {
         super(context);
     }
